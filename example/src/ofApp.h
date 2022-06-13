@@ -28,8 +28,15 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     
-    unique_ptr<ofxPlaybackGui> playback;
+    ofxPlaybackGui playback;
 
     ofxPanel gui;
+    
+    
+    
+    ofEventListeners listeners;
+    
+    
+    
     
 };

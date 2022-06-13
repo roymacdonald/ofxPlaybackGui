@@ -97,7 +97,53 @@ public:
     ofxMiniPlayPause(ofParameter<bool> _bVal, float width = defaultHeight, float height = defaultHeight);
     
 protected:
+    virtual void generateDraw();
     virtual void render();
     ofPath iconPause;
 };
+
+//--------------------------------------------------------------------------------
+class ofxMiniStopButton: public ofxMiniButton{
+public:
+    ofxMiniStopButton():ofxMiniButton(){}
+    ofxMiniStopButton(ofParameter<void> _bVal, float width = defaultHeight, float height = defaultHeight):ofxMiniButton(_bVal, width, height){}
+    ofxMiniStopButton(const std::string& buttonName, float width = defaultHeight, float height = defaultHeight):ofxMiniButton(buttonName, width, height){}
+    
+protected:
+    virtual void generateDraw();
+};
+
+class ofxMiniFwdButton: public ofxMiniButton{
+public:
+    ofxMiniFwdButton():ofxMiniButton(){}
+    ofxMiniFwdButton(ofParameter<void> _bVal, float width = defaultHeight, float height = defaultHeight):ofxMiniButton(_bVal, width, height){}
+    ofxMiniFwdButton(const std::string& buttonName, float width = defaultHeight, float height = defaultHeight):ofxMiniButton(buttonName, width, height){}
+    
+protected:
+    virtual void generateDraw();
+};
+
+
+class ofxMiniBackButton: public ofxMiniButton{
+public:
+    ofxMiniBackButton():ofxMiniButton(){}
+    ofxMiniBackButton(ofParameter<void> _bVal, float width = defaultHeight, float height = defaultHeight):ofxMiniButton(_bVal, width, height){}
+    ofxMiniBackButton(const std::string& buttonName, float width = defaultHeight, float height = defaultHeight):ofxMiniButton(buttonName, width, height){}
+    
+protected:
+    virtual void generateDraw();
+};
+
+class ofxMiniRecButton: public ofxMiniButton{
+public:
+    ofxMiniRecButton():ofxMiniButton(){}
+    ofxMiniRecButton(ofParameter<void> _bVal, float width = defaultHeight, float height = defaultHeight):ofxMiniButton(_bVal, width, height){}
+    ofxMiniRecButton(const std::string& buttonName, float width = defaultHeight, float height = defaultHeight):ofxMiniButton(buttonName, width, height){}
+    
+protected:
+    virtual void generateDraw();
+};
+
+
+
 

@@ -24,14 +24,14 @@ ofxMiniToggle * ofxMiniToggle::setup(ofParameter<bool> _bVal, float width, float
     b.height = height;
     bGuiActive = false;
     value.makeReferenceTo(_bVal);
-//    checkboxRect.set(1, 1, b.height - 2, b.height - 2);
-
+    //    checkboxRect.set(1, 1, b.height - 2, b.height - 2);
+    
     value.addListener(this,&ofxMiniToggle::valueChanged);
     registerMouseEvents();
     setNeedsRedraw();
-
+    
     return this;
-
+    
 }
 
 ofxMiniToggle * ofxMiniToggle::setup(const std::string& toggleName, bool _bVal, float width, float height){
@@ -42,6 +42,7 @@ ofxMiniToggle * ofxMiniToggle::setup(const std::string& toggleName, bool _bVal, 
 
 bool ofxMiniToggle::mouseMoved(ofMouseEventArgs & args){
     if(isGuiDrawing() && b.inside(args)){
+        //        cout << getName() << "  Mouse moved inside\n";
         return true;
     }else{
         return false;
@@ -75,39 +76,50 @@ bool ofxMiniToggle::mouseReleased(ofMouseEventArgs & args){
 }
 
 void ofxMiniToggle::generateDraw(){
+    
+    auto r = b;
+    
+    float margin = 1;
+    
+    r.x += margin;
+    r.y += margin;
+    
+    r.width -= margin*2;
+    r.height -= margin*2;
+    
     bg.clear();
     bg.setFillColor(thisBackgroundColor);
-    bg.rectangle(b);
-
-    fg.clear();
-        fg.setFilled(true);
-        fg.setFillColor(thisFillColor);
-        fg.setStrokeWidth(1);
-        fg.setStrokeColor(thisBorderColor);
+    bg.rectangle(r);
     
-    fg.rectangle(b);
-
-  
+    fg.clear();
+    fg.setFilled(true);
+    fg.setFillColor(thisFillColor);
+    fg.setStrokeWidth(1);
+    fg.setStrokeColor(thisBorderColor);
+    
+    fg.rectangle(r);
+    
+    
 }
 
 void ofxMiniToggle::render(){
     bg.draw();
-
+    
     if( value ){
         fg.draw();
     }
-
+    
     ofColor c = ofGetStyle().color;
     ofBlendMode blendMode = ofGetStyle().blendingMode;
     if(blendMode!=OF_BLENDMODE_ALPHA){
         ofEnableAlphaBlending();
     }
     ofSetColor(thisTextColor);
-
+    
     
     icon.draw();
     
-
+    
     ofSetColor(c);
     if(blendMode!=OF_BLENDMODE_ALPHA){
         ofEnableBlendMode(blendMode);
@@ -126,13 +138,14 @@ ofxMiniToggle::operator const bool & (){
 bool ofxMiniToggle::setValue(float mx, float my, bool bCheck){
     
     if( !isGuiDrawing() ){
+        //        cout << getName() << "  : not drawing : setValue\n";
         bGuiActive = false;
         return false;
     }
     if( bCheck ){
-        cout << "ofxMiniToggle::setValue " << getName() << "  " << value.get() << " b: " << b << " mouse: " << mx << ", " << my <<endl;
+        //        cout << "ofxMiniToggle::setValue " << getName() << "  " << value.get() << " b: " << b << " mouse: " << mx << ", " << my <<endl;
         if( b.inside(mx, my) ){
-            cout << "Inside\n";
+            //            cout << "Inside\n";
             bGuiActive = true;
         }else{
             bGuiActive = false;
@@ -189,11 +202,11 @@ ofxMiniButton* ofxMiniButton::setup(const std::string& toggleName, float width, 
     b.width = width;
     b.height = height;
     bGuiActive = false;
-
+    
     registerMouseEvents();
-
+    
     value.addListener(this,&ofxMiniButton::valueChanged);
-
+    
     return this;
 }
 
@@ -235,53 +248,126 @@ void ofxMiniButton::valueChanged(bool & v){
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
 
+#define DRAW_MARGIN 3
+
 ofxMiniPlayPause::ofxMiniPlayPause(ofParameter<bool> _bVal, float width, float height):
 ofxMiniToggle(_bVal, width, height)
 {
+    value = false;//so it begins in paused mode
     
-    int margin = 1;
-    float w  = b.width - (2*margin);
+}
+void ofxMiniPlayPause::generateDraw(){
+    
+    
+    ofxMiniToggle::generateDraw();
+    iconPause.clear();
+    
+    float w  = b.width - (2*DRAW_MARGIN);
     float rw = floor(w* 0.4 );
-    ofRectangle r = {b.x + margin, b.y + margin,  rw, b.height - (2*margin)};
+    ofRectangle r = {b.x + DRAW_MARGIN, b.y + DRAW_MARGIN,  rw, b.height - (2*DRAW_MARGIN)};
     iconPause.rectangle(r);
     r.x += w - rw;
     iconPause.rectangle(r);
     
-    float co  = tan(ofDegToRad(30)) * w;
-    float h2 = r.getCenter().y;
-    icon.moveTo(margin, h2-co);
-    icon.lineTo(b.getMaxX() - (2*margin), h2);
-    icon.lineTo(margin, h2+co);
+    icon.clear();
+    
+    r.set(b.x + DRAW_MARGIN, b.y + DRAW_MARGIN, b.width - 2*DRAW_MARGIN, b.height - 2*DRAW_MARGIN);
+    
+    icon.moveTo(r.x , r.y);
+    icon.lineTo(r.getMaxX(), r.getCenter().y);
+    icon.lineTo(r.x , r.getMaxY());
     icon.close();
+    
     
     
 }
 
-
 void ofxMiniPlayPause::render(){
     bg.draw();
-
+    
     if( value ){
         fg.draw();
     }
-
+    
     ofColor c = ofGetStyle().color;
     ofBlendMode blendMode = ofGetStyle().blendingMode;
     if(blendMode!=OF_BLENDMODE_ALPHA){
         ofEnableAlphaBlending();
     }
     ofSetColor(thisTextColor);
-
+    
     if( value ){
         iconPause.draw();
     }else{
         icon.draw();
     }
     
-
+    
     ofSetColor(c);
     if(blendMode!=OF_BLENDMODE_ALPHA){
         ofEnableBlendMode(blendMode);
     }
 }
-//ofPath iconPause;
+
+
+//----------------------------------------------------------------------------
+void ofxMiniStopButton::generateDraw(){
+    ofxMiniButton::generateDraw();
+    icon.clear();
+    
+    ofRectangle r(b.x + DRAW_MARGIN, b.y + DRAW_MARGIN, b.width - 2*DRAW_MARGIN, b.height - 2*DRAW_MARGIN);
+    icon.rectangle(r);
+    
+}
+//----------------------------------------------------------------------------
+void ofxMiniFwdButton::generateDraw(){
+    ofxMiniButton::generateDraw();
+    
+    icon.clear();
+    
+    ofRectangle r(b.x + DRAW_MARGIN, b.y + DRAW_MARGIN, b.width - 2*DRAW_MARGIN, b.height - 2*DRAW_MARGIN);
+    r.width *= 0.5;
+    
+    icon.moveTo(r.x , r.y);
+    icon.lineTo(r.getMaxX(), r.getCenter().y);
+    icon.lineTo(r.x , r.getMaxY());
+    icon.close();
+    
+    r.x += r.width;
+    icon.moveTo(r.x , r.y);
+    icon.lineTo(r.getMaxX(), r.getCenter().y);
+    icon.lineTo(r.x , r.getMaxY());
+    
+    icon.close();
+    
+}
+//----------------------------------------------------------------------------
+void ofxMiniBackButton::generateDraw(){
+    ofxMiniButton::generateDraw();
+    
+    ofRectangle r(b.x + DRAW_MARGIN, b.y + DRAW_MARGIN, b.width - 2*DRAW_MARGIN, b.height - 2*DRAW_MARGIN);
+    r.width *= 0.5;
+    icon.clear();
+    
+    icon.moveTo(r.getMaxX() , r.y);
+    icon.lineTo(r.x, r.getCenter().y);
+    icon.lineTo(r.getMaxX() , r.getMaxY());
+    icon.close();
+    
+    r.x += r.width;
+    icon.moveTo(r.getMaxX() , r.y);
+    icon.lineTo(r.x, r.getCenter().y);
+    icon.lineTo(r.getMaxX() , r.getMaxY());
+    
+    icon.close();
+    
+}
+//----------------------------------------------------------------------------
+void ofxMiniRecButton::generateDraw(){
+    ofxMiniButton::generateDraw();
+    icon.clear();
+    auto c =  b.getCenter();
+    icon.circle(c.x, c.y, (b.width - 2* DRAW_MARGIN)/2);
+    
+}
+

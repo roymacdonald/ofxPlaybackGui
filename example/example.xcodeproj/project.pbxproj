@@ -9,6 +9,109 @@
 		<string>46</string>
 		<key>objects</key>
 		<dict>
+			<key>B244C23BA3B5C45615DAACB3</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxPlaybackGui.hpp</string>
+				<key>path</key>
+				<string>../../../addons/ofxPlaybackGui/src/ofxPlaybackGui.hpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>04ED35BC4FE9C92F82224C51</key>
+			<dict>
+				<key>fileRef</key>
+				<string>252E7A88E5117BEF238915FB</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>252E7A88E5117BEF238915FB</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxPlaybackGui.cpp</string>
+				<key>path</key>
+				<string>../../../addons/ofxPlaybackGui/src/ofxPlaybackGui.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>5BEE431AB4D8E8506FB64341</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxMiniGui.h</string>
+				<key>path</key>
+				<string>../../../addons/ofxPlaybackGui/src/ofxMiniGui.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>ABDE59A4E52A3EADC5CEA112</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>5A83C58DE2FB4E15E6DB945E</string>
+					<string>5BEE431AB4D8E8506FB64341</string>
+					<string>252E7A88E5117BEF238915FB</string>
+					<string>B244C23BA3B5C45615DAACB3</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>src</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>30116B6B434E28ACDE4762F9</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>ABDE59A4E52A3EADC5CEA112</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>ofxPlaybackGui</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>3529A1AEE6CD2EDD804FDAD0</key>
+			<dict>
+				<key>fileRef</key>
+				<string>5A83C58DE2FB4E15E6DB945E</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>5A83C58DE2FB4E15E6DB945E</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxMiniGui.cpp</string>
+				<key>path</key>
+				<string>../../../addons/ofxPlaybackGui/src/ofxMiniGui.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
 			<key>0A1DAC09F322AE313A40706D</key>
 			<dict>
 				<key>explicitFileType</key>
@@ -625,6 +728,7 @@ fi
 						<string>src</string>
 						<string>src</string>
 						<string>../../../addons/ofxGui/src</string>
+						<string>../../../addons/ofxPlaybackGui/src</string>
 					</array>
 					<key>MACOSX_DEPLOYMENT_TARGET</key>
 					<string>10.9</string>
@@ -670,6 +774,7 @@ fi
 						<string>src</string>
 						<string>src</string>
 						<string>../../../addons/ofxGui/src</string>
+						<string>../../../addons/ofxPlaybackGui/src</string>
 					</array>
 					<key>ICON</key>
 					<string>$(ICON_NAME_RELEASE)</string>
@@ -706,6 +811,7 @@ fi
 				<key>children</key>
 				<array>
 					<string>480A780D8D0308AE4A368801</string>
+					<string>30116B6B434E28ACDE4762F9</string>
 				</array>
 				<key>isa</key>
 				<string>PBXGroup</string>
@@ -3473,6 +3579,7 @@ fi
 						<string>src</string>
 						<string>src</string>
 						<string>../../../addons/ofxGui/src</string>
+						<string>../../../addons/ofxPlaybackGui/src</string>
 					</array>
 					<key>MACOSX_DEPLOYMENT_TARGET</key>
 					<string>10.9</string>
@@ -3536,6 +3643,7 @@ fi
 						<string>src</string>
 						<string>src</string>
 						<string>../../../addons/ofxGui/src</string>
+						<string>../../../addons/ofxPlaybackGui/src</string>
 					</array>
 					<key>MACOSX_DEPLOYMENT_TARGET</key>
 					<string>10.9</string>
@@ -3573,6 +3681,8 @@ fi
 					<string>837220E80EB56CD44AD27F2A</string>
 					<string>B56FE57CC35806596D38118C</string>
 					<string>1CD33E884D9E3358252E82A1</string>
+					<string>3529A1AEE6CD2EDD804FDAD0</string>
+					<string>04ED35BC4FE9C92F82224C51</string>
 				</array>
 				<key>isa</key>
 				<string>PBXSourcesBuildPhase</string>
@@ -3674,6 +3784,7 @@ fi
 						<string>src</string>
 						<string>src</string>
 						<string>../../../addons/ofxGui/src</string>
+						<string>../../../addons/ofxPlaybackGui/src</string>
 					</array>
 					<key>ICON</key>
 					<string>$(ICON_NAME_DEBUG)</string>
@@ -3727,6 +3838,7 @@ fi
 						<string>src</string>
 						<string>src</string>
 						<string>../../../addons/ofxGui/src</string>
+						<string>../../../addons/ofxPlaybackGui/src</string>
 					</array>
 					<key>ICON</key>
 					<string>$(ICON_NAME_RELEASE)</string>

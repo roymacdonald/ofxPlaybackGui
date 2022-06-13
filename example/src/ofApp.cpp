@@ -2,10 +2,39 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    playback = make_unique<ofxPlaybackGui>();
-    playback->setup();
+    
+
+    playback.setup();
+    
     gui.setup();
-    gui.add(playback.get());
+    gui.add(&playback);
+    
+
+    
+    // create listeners for the buttons
+    listeners.push(playback.forwards.newListener([&](){
+        cout << "Forwards pressed\n";
+    }));
+
+    listeners.push(playback.backwards.newListener([&](){
+        cout << "Backwards pressed\n";
+    }));
+        
+    listeners.push(playback.rec.newListener([&](){
+        cout << "Rec pressed\n";
+    }));
+    
+    listeners.push(playback.stop.newListener([&](){
+        cout << "Stop pressed\n";
+    }));
+
+    // Notice that the play listener needs a function with a 'bool &' argument.
+    // That argument will be true when playing and false when not playing
+    listeners.push(playback.play.newListener([&](bool& play){
+        //std::boolalpha is used so it prints true or false, instead of 1 and 0 when passing a bool to cout;
+        cout << "Play Paused pressed. Playing "<< std::boolalpha << play <<"\n";
+    }));
+
     
 }
 
@@ -17,6 +46,9 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     gui.draw();
+    
+
+    
 }
 
 //--------------------------------------------------------------
@@ -26,7 +58,7 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    
 }
 
 //--------------------------------------------------------------
