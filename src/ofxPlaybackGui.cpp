@@ -5,7 +5,7 @@
 //  Created by Roy Macdonald on 12-06-22.
 //
 
-#include "ofxPlaybackGui.hpp"
+#include "ofxPlaybackGui.h"
 
 #include "ofGraphics.h"
 #include "ofxGuiGroup.h"

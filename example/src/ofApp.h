@@ -5,7 +5,7 @@
 
 #include "ofxGui.h"
 
-#include "ofxPlaybackGui.hpp"
+#include "ofxPlaybackGui.h"
 
 
 class ofApp : public ofBaseApp{
