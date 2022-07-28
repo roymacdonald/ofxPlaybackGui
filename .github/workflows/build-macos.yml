@@ -38,7 +38,7 @@ jobs:
     - name: installOF
       run: 
 #           mkdir ~/openFrameworks
-          cd $GITHUB_WORKSPACE/downloads
+          cd downloads
           res=$(find . -name "*_osx_release.zip" | head -1)
           unzip $res -d ~/openFrameworks
 
