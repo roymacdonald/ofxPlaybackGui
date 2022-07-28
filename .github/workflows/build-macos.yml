@@ -38,12 +38,13 @@ jobs:
           echo "-----ls openFrameworks-----";
           pwd -P;
           ls;
-          addonName=$(basename $GITHUB_WORKSPACE);
-          echo "openFrameworks/addons/$GITHUB_WORKSPACE";
+          repoName=$(basename ${{ github.repository }});
+          echo "REPO_NAME=$repoName" >> $GITHUB_ENV;
+          echo "REPO_DOWNLOAD_PATH=openFrameworks/addons/$repoName" >> $GITHUB_ENV;
           echo "GITHUB_WORKSPACE $GITHUB_WORKSPACE";
     - uses: actions/checkout@v2
       with:
-        path: ${{ "openFrameworks/addons/$(basename $GITHUB_WORKSPACE)" }}
+        path: ${{ env.REPO_DOWNLOAD_PATH }}
     - name: generate Project
       run: OF_PATH=$( cd "openFrameworks" ; pwd -P );
            cd $OF_PATH ;
@@ -53,7 +54,7 @@ jobs:
            ls addons ;
            echo "-------";
            ls addons/ofxPlaybackGui ;
-           ./projectGenerator/projectGenerator.app/Contents/Resources/app/app/projectGenerator -o"$OF_PATH" -p"osx" -t"" "$OF_PATH/addons/$(basename GITHUB_WORKSPACE)/example";
+           ./projectGenerator/projectGenerator.app/Contents/Resources/app/app/projectGenerator -o"$OF_PATH" -p"osx" -t"" "$OF_PATH/addons/${{ env.REPO_NAME }}/example";
       
     
 #    - name: Build
