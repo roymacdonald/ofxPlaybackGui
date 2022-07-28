@@ -39,7 +39,7 @@ jobs:
           res=$(find . -name "*_osx_release.zip" | head -1)
           unzip $res -d ~/openFrameworks
 
-    - name: Build
-      env:
-        DEVELOPER_DIR: "/Applications/Xcode_12.2.app/Contents/Developer"
-        SDKROOT: "/Applications/Xcode_12.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+#    - name: Build
+#      env:
+#        DEVELOPER_DIR: "/Applications/Xcode_12.2.app/Contents/Developer"
+#        SDKROOT: "/Applications/Xcode_12.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
