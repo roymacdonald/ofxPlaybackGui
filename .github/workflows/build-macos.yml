@@ -28,7 +28,7 @@ jobs:
       run: 
           cd downloads;
           res=$(find . -name "*_osx_release.zip" | head -1);
-          unzip $res -d ~/openFrameworks;
+          unzip $res -d ~/openFrameworks/;          
     - uses: actions/checkout@v2
 #    - name: Build
 #      env:
