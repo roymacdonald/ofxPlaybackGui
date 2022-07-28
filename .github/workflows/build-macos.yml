@@ -21,23 +21,23 @@ jobs:
           - {target: osx, opt: ""}
           - {target: osx, opt: "makefiles"}
     env:
-     TARGET: ${{matrix.cfg.target}}
-     OPT: ${{matrix.cfg.opt}}
+      TARGET: ${{matrix.cfg.target}}
+      OPT: ${{matrix.cfg.opt}}
     steps:
     - uses: actions/checkout@v2
-
-    - uses: robinraju/release-downloader@v1.4
-      name: install
+    - name: getOF
+      uses: robinraju/release-downloader@v1.4
       with:
         repository: "openframeworks/openFrameworks"
         latest: true
         fileName: "*_osx_release.zip"
         out-file-path: "downloads"
-    - name: getOF
-      run: mkdir ~/openFrameworks
-           cd $GITHUB_WORKSPACE/downloads
-           res=$(find . -name "*_osx_release.zip" | head -1)
-           unzip $res -d ~/openFrameworks
+    - name: installOF
+      run: 
+          mkdir ~/openFrameworks
+          cd $GITHUB_WORKSPACE/downloads
+          res=$(find . -name "*_osx_release.zip" | head -1)
+          unzip $res -d ~/openFrameworks
 
     - name: Build
       env:
