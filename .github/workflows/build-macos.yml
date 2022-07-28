@@ -28,7 +28,7 @@ jobs:
       run: 
           pwd -P;
           res=$(find ./downloads -name "*_osx_release.zip" | head -1);
-          unzip $res -d openFrameworks/; 
+          unzip -q $res -d openFrameworks/; 
           cd openFrameworks;
           mv $(ls) ../temp;
           cd ..;
