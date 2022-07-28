@@ -12,19 +12,9 @@ on:
     - '**/*.md'
   
 jobs:
-
-  build-osx:
+  get-of:
     runs-on: macos-10.15
-    strategy:
-        matrix:
-          cfg:
-          - {target: osx, opt: ""}
-          - {target: osx, opt: "makefiles"}
-    env:
-      TARGET: ${{matrix.cfg.target}}
-      OPT: ${{matrix.cfg.opt}}
     steps:
-    - uses: actions/checkout@v2
     - name: getOF
       uses: robinraju/release-downloader@v1.4
       with:
@@ -32,6 +22,19 @@ jobs:
         latest: true
         fileName: "*_osx_release.zip"
         out-file-path: "downloads"
+  build-osx:
+    needs: get-of
+    runs-on: macos-10.15
+#     strategy:
+#         matrix:
+#           cfg:
+#           - {target: osx, opt: ""}
+#           - {target: osx, opt: "makefiles"}
+#     env:
+#       TARGET: ${{matrix.cfg.target}}
+#       OPT: ${{matrix.cfg.opt}}
+    steps:
+    - uses: actions/checkout@v2
     - name: installOF
       run: 
           mkdir ~/openFrameworks
