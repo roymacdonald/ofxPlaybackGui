@@ -33,6 +33,7 @@ jobs:
         latest: true
         fileName: "*_osx_release.zip"
         out-file-path: "downloads"
+    - name getOF
       run: mkdir ~/openFrameworks
            cd $GITHUB_WORKSPACE/downloads
            res=$(find . -name "*_osx_release.zip" | head -1)
