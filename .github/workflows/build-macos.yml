@@ -42,7 +42,7 @@ jobs:
            cd $OF_PATH ;
            echo "----ofPath---";
            echo $OF_PATH ;
-           ls 
+           ls ;
            ls addons ;
            echo "-------";
            ls addons/ofxPlaybackGui ;
