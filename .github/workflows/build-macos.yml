@@ -55,9 +55,9 @@ jobs:
            echo "-------";
            ls addons/ofxPlaybackGui ;
            ./projectGenerator/projectGenerator.app/Contents/Resources/app/app/projectGenerator -o"$OF_PATH" -p"osx" -t"" "$OF_PATH/addons/${{ env.REPO_NAME }}/example";
-      
-    
-#    - name: Build
-#      env:
-#        DEVELOPER_DIR: "/Applications/Xcode_12.2.app/Contents/Developer"
-#        SDKROOT: "/Applications/Xcode_12.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+    - name: Build
+      env:
+        DEVELOPER_DIR: "/Applications/Xcode_12.2.app/Contents/Developer"
+        SDKROOT: "/Applications/Xcode_12.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+      run: cd "$OF_PATH/addons/${{ env.REPO_NAME }}/example";
+           xcodebuild -configuration Debug -target example -project example.xcodeproj;
