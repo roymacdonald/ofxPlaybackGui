@@ -38,12 +38,12 @@ jobs:
       with:
         path: 'openFrameworks/addons'
     - name: generate Project
-      run: OF_PATH=$( cd "openFrameworks" ; pwd -P )
-           cd $OF_PATH
-           ls addons
-           echo "-------"
-           ls addons/ofxPlaybackGui 
-           ./projectGenerator/projectGenerator.app/Contents/Resources/app/app/projectGenerator -o"$OF_PATH" -p"osx" -t"" "$OF_PATH/addons/$(basename GITHUB_WORKSPACE)/example"
+      run: OF_PATH=$( cd "openFrameworks" ; pwd -P );
+           cd $OF_PATH ;
+           ls addons ;
+           echo "-------";
+           ls addons/ofxPlaybackGui ;
+           ./projectGenerator/projectGenerator.app/Contents/Resources/app/app/projectGenerator -o"$OF_PATH" -p"osx" -t"" "$OF_PATH/addons/$(basename GITHUB_WORKSPACE)/example";
       
     
 #    - name: Build
