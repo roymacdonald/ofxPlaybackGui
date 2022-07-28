@@ -26,17 +26,23 @@ jobs:
       run: ls downloads
     - name: installOF
       run: 
+          pwd -P;
           res=$(find ./downloads -name "*_osx_release.zip" | head -1);
           unzip $res -d openFrameworks/; 
-          cd openFrameworks
-          mv $(ls) ../temp
-          cd ..
-          rm -rf openFrameworks
-          mv temp openFrameworks
-          
+          cd openFrameworks;
+          mv $(ls) ../temp;
+          cd ..;
+          rm -rf openFrameworks;
+          mv temp openFrameworks;
+          cd openFrameworks;
+          echo "-----ls openFrameworks-----";
+          pwd -P;
+          ls;
+          echo 'openFrameworks/addons/$(basename $GITHUB_WORKSPACE)';
+          echo "GITHUB_WORKSPACE $GITHUB_WORKSPACE";
     - uses: actions/checkout@v2
       with:
-        path: 'openFrameworks/addons/$(basename GITHUB_WORKSPACE)'
+        path: 'openFrameworks/addons/$(basename $GITHUB_WORKSPACE)'
     - name: generate Project
       run: OF_PATH=$( cd "openFrameworks" ; pwd -P );
            cd $OF_PATH ;
