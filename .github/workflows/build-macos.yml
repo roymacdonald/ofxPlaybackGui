@@ -12,7 +12,7 @@ on:
     - '**/*.md'
   
 jobs:
-  get-of:
+  build-osx:
     runs-on: macos-10.15
     steps:
     - name: getOF
@@ -24,26 +24,12 @@ jobs:
         out-file-path: "downloads"
     - name: list
       run: ls downloads
-  build-osx:
-    needs: get-of
-    runs-on: macos-10.15
-#     strategy:
-#         matrix:
-#           cfg:
-#           - {target: osx, opt: ""}
-#           - {target: osx, opt: "makefiles"}
-#     env:
-#       TARGET: ${{matrix.cfg.target}}
-#       OPT: ${{matrix.cfg.opt}}
-    steps:
-    - uses: actions/checkout@v2
     - name: installOF
       run: 
-#           mkdir ~/openFrameworks
-          cd downloads
-          res=$(find . -name "*_osx_release.zip" | head -1)
-          unzip $res -d ~/openFrameworks
-
+          cd downloads;
+          res=$(find . -name "*_osx_release.zip" | head -1);
+          unzip $res -d ~/openFrameworks;
+    - uses: actions/checkout@v2
 #    - name: Build
 #      env:
 #        DEVELOPER_DIR: "/Applications/Xcode_12.2.app/Contents/Developer"
