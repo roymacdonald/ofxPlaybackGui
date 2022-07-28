@@ -28,7 +28,7 @@ jobs:
       run: 
           pwd -P;
           res=$(find ./downloads -name "*_osx_release.zip" | head -1);
-          unzip $res -d openFrameworks/; 
+          unzip $res -q -d openFrameworks/; 
           cd openFrameworks;
           mv $(ls) ../temp;
           cd ..;
@@ -47,6 +47,7 @@ jobs:
         path: ${{ env.REPO_DOWNLOAD_PATH }}
     - name: generate Project
       run: OF_PATH=$( cd "openFrameworks" ; pwd -P );
+           echo "OF_PATH=$OF_PATH" >> $GITHUB_ENV;
            cd $OF_PATH ;
            echo "----ofPath---";
            echo $OF_PATH ;
@@ -59,5 +60,5 @@ jobs:
       env:
         DEVELOPER_DIR: "/Applications/Xcode_12.2.app/Contents/Developer"
         SDKROOT: "/Applications/Xcode_12.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
-      run: cd "$OF_PATH/addons/${{ env.REPO_NAME }}/example";
+      run: cd "${{ env.OF_PATH }}/addons/${{ env.REPO_NAME }}/example";
            xcodebuild -configuration Debug -target example -project example.xcodeproj;
