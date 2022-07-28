@@ -33,13 +33,16 @@ jobs:
           cd ..
           rm -rf openFrameworks
           mv temp openFrameworks
-                
+          
     - uses: actions/checkout@v2
       with:
-        path: 'openFrameworks/addons'
+        path: 'openFrameworks/addons/$(basename GITHUB_WORKSPACE)'
     - name: generate Project
       run: OF_PATH=$( cd "openFrameworks" ; pwd -P );
            cd $OF_PATH ;
+           echo "----ofPath---";
+           echo $OF_PATH ;
+           ls 
            ls addons ;
            echo "-------";
            ls addons/ofxPlaybackGui ;
